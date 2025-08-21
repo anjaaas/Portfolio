@@ -17,10 +17,40 @@ body {
 }
 
 header {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 1000;
+  position: fixed;      /* fixiert oben */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;        /* immer oben */
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+}
+
+.header-container .logo a {
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: #000;
+}
+
+.header-container nav a {
+  margin-left: 30px;
+  text-decoration: none;
+  color: #000;
+  font-size: 1rem;
+}
+
+.header-container nav a:hover {
+  opacity: 0.7;
+}
+
+nav a.active {
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 .logo {
@@ -145,3 +175,251 @@ footer {
   font-size: 0.9rem;
   opacity: 0.6;
 }
+
+.projekte-titel {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 40px;
+  /* Kein sticky, bleibt einfach oben auf der Seite */
+}
+
+/* Projektseite: Container für Projekte */
+.projekt-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(280px, 1fr)); /* min 280px, max so breit wie möglich */
+  gap: 40px; /* Abstand zwischen Projekten */
+  padding: 0 40px 40px;
+}
+
+/* Responsiv für kleinere Bildschirme */
+@media (max-width: 1000px) {
+  .projekt-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 Spalten bei mittleren Bildschirmen */
+  }
+}
+
+@media (max-width: 650px) {
+  .projekt-container {
+    grid-template-columns: 1fr; /* 1 Spalte auf Handys */
+  }
+}
+
+.projekt {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+.projekt:hover {
+  transform: scale(1.02);
+}
+
+.projekt img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+.projekt a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.projekt a:hover h2 {
+  text-decoration: underline;
+}
+
+.seiten-titel {
+  font-family: 'Courier New', monospace;
+  border-left: 4px solid #ddd;  /* linker Rahmen wie auf Über mich */
+  padding-left: 10px;           /* Abstand zwischen Rahmen und Text */
+  margin: 100px 0 40px 0;       /* oben: 100px passend zum Header, unten: 40px */
+  font-size: 2.5rem;            /* gleiche Größe wie Über mich (falls kleiner als .projekte-titel) */
+  color: #222;
+}
+
+p {
+  margin-bottom: 20px; /* Abstand nach jedem Absatz */
+}
+
+.bild-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3; /* z. B. 4:3 Verhältnis */
+  overflow: hidden;
+}
+
+.bild-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.bild-container .skizze {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2; /* Skizze liegt oben */
+}
+
+.bild-container:hover .skizze {
+  opacity: 0; /* Skizze verschwindet beim Hover */
+}
+
+/* Projekt Detailseite */
+
+.projekt-einzeln {
+  max-width: 1000px;   /* breiter als Über-mich-Seite, damit Bilder wirken */
+  margin: 120px auto;  /* Abstand unter Header */
+  padding: 0 20px;
+}
+
+.projektbild {
+  width: 100%;
+  border-radius: 8px;
+  margin: 40px 0;
+}
+
+.projektbild.hero {
+  margin-top: 0;       /* Hero-Bild direkt oben */
+  border-radius: 0;    /* hero vollflächig wirken lassen */
+}
+
+.zurueck {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.zurueck a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+
+/* Lightbox Overlay */
+.lightbox {
+  display: none;              /* Unsichtbar am Anfang */
+  position: fixed;
+  z-index: 2000;              /* über allem */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.8); /* dunkler Hintergrund */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Bild in der Lightbox */
+.lightbox-content {
+  max-width: 90%;
+  max-height: 90%;
+  margin: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+/* Schließen-Button */
+.lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Mehrere Bilder durchklicken */
+.galerie-beschreibung {
+  font-weight: bold;
+  margin-top: 40px;  /* Abstand nach vorherigem Text / Galerie */
+  margin-bottom: 10px; /* Abstand zur Bilderreihe */
+}
+
+#lightbox {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  justify-content: center;
+  align-items: center;
+}
+
+#lightbox-img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: white;
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+.nav span {
+  position: absolute;
+  top: 50%;
+  color: white;
+  font-size: 3rem;
+  cursor: pointer;
+  user-select: none;
+  padding: 10px;
+}
+
+.nav .prev {
+  left: 20px;
+}
+
+.nav .next {
+  right: 20px;
+}
+
+.projekt-video {
+  margin-top: 20px; /* Abstand zu vorherigen Inhalten */
+}
+
+.projekt-container {
+  max-width: 900px; /* gleiche Breite wie der Text */
+  margin: 0 auto;   /* zentriert auf der Seite */
+  padding: 0 20px;  /* etwas Abstand zum Rand */
+}
+
+
+
+/* Für alle Bilderreihen */
+.bilder-reihe, .bilder-galerie, .bilder-grid {
+  display: flex;
+  gap: 10px;
+}
+
+.bilder-reihe img, .bilder-galerie img, .bilder-grid img {
+  flex: 1;
+  max-height: 300px; /* passt sich Textbereich an */
+  width: auto;
+  object-fit: cover;
+  border-radius: 8px; /* gleiche Rundung wie bei anderen Bildern */
+}
+
+/* Wenn du die volle Breite aufteilen willst */
+.bilder-galerie img, .bilder-grid img {
+  flex: 1; /* Bilder teilen sich den Platz gleichmäßig */
+}
+
