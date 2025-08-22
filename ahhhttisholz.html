@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Containerinseli – Anja Giossi</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo"><a href="index.html">Anja Giossi</a></div>
+      <nav>
+        <a href="projekte.html">Projekte</a>
+        <a href="ueber-mich.html">Über mich</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="projekt-einzeln">
+      <h1>Ahhhttisholz</h1>
+      <p><strong>Umnutzungskonzept, Visualisierung</strong></p>
+      <!-- Hero -->
+      <div class="bild-container hero-container">
+        <img src="aahtisholz_visual.jpg" alt="Containerinseli Hero" class="projektbild" id="hero-img"/>
+      </div>
+      <p class="hero-datum">11.–12.2023</p>
+
+      <div class="detail-separator"></div>
+
+      <!-- Projektbeschreibung -->
+      <p>Was soll an einem abgelegenen und stillgelegten Ort am besten hin? Gute Frage, einfache Antwort; ein Spukhaus. Bringen wir das AHH nach Attisholz. Aber nicht nur das, sondern auch Menschen, Menschen, die ein Erlebnis 
+wollen. Bieten wir ihnen also einen gruseligen Escape Room mit Belohnung obendrauf. 
+Also auf was warten Sie noch? Kommen Sie vorbei!</p>
+      <p>Escapeturms – für abenteuerlustige Turm Fans.</p>
+
+      <div class="detail-separator"></div>
+
+      <div class="galerie-beschreibung">Projektidee und Skizzen</div>
+      <!-- Galerie volle Breite -->
+      <div class="bilder-galerie-full">
+        <div class="bild-container"><img src="ahhhttisholz2.jpg" alt="Skizze 1" class="galerie-img"></div>
+        <div class="bild-container"><img src="ahhhttisholz3.jpg" alt="Skizze 2" class="galerie-img"></div>
+        <div class="bild-container"><img src="ahhhttisholz1.jpg" alt="Skizze 3" class="galerie-img"></div>
+      </div>
+
+      <div class="detail-separator"></div>
+
+      <!-- Weitere Textabschnitte mittig -->
+      <p>Die Idee hinter dem Containerinseli war, Räume für Kreativität und Begegnung zu schaffen, ohne dass feste Strukturen den Ablauf vorgeben. Die Container dienen als flexible Bühne für verschiedene Nutzungen.</p>
+
+      <!-- Zurück-Link -->
+      <div class="zurueck">
+        <a href="projekte.html">&larr; Zurück zu Projekten</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Anja Giossi</p>
+  </footer>
+
+  <!-- Hero Lightbox -->
+  <div id="hero-lightbox" class="lightbox">
+    <span class="close" id="close-hero">&times;</span>
+    <img id="hero-lightbox-img" src="" alt="">
+  </div>
+
+  <!-- Galerie Lightbox -->
+  <div id="galerie-lightbox" class="lightbox">
+    <span class="close" id="close-galerie">&times;</span>
+    <img id="galerie-lightbox-img" src="" alt="">
+    <div class="nav">
+      <span class="prev">&#10094;</span>
+      <span class="next">&#10095;</span>
+    </div>
+  </div>
+
+  <script>
+// Hero Lightbox
+const heroImg = document.getElementById('hero-img');
+const heroLightbox = document.getElementById('hero-lightbox');
+const heroLightboxImg = document.getElementById('hero-lightbox-img');
+
+if(heroImg) {
+  heroImg.addEventListener('click', () => {
+    heroLightbox.style.display = 'flex';
+    heroLightboxImg.src = heroImg.src;
+  });
+}
+
+const closeHero = document.getElementById('close-hero');
+if(closeHero) closeHero.addEventListener('click', () => heroLightbox.style.display = 'none');
+
+// Galerie Lightbox
+(function initGalerieLightbox(){
+  const galerieImages = document.querySelectorAll('.galerie-img');
+  if(galerieImages.length === 0) return; // keine Galerie? nichts tun
+
+  const galerieLightbox = document.getElementById('galerie-lightbox');
+  const galerieLightboxImg = document.getElementById('galerie-lightbox-img');
+  const prevBtn = galerieLightbox.querySelector('.prev');
+  const nextBtn = galerieLightbox.querySelector('.next');
+  let currentIndex = 0;
+
+  galerieImages.forEach((img, index) => {
+    img.addEventListener('click', () => {
+      galerieLightbox.style.display = 'flex';
+      galerieLightboxImg.src = img.src;
+      currentIndex = index;
+    });
+  });
+
+  const closeGalerie = document.getElementById('close-galerie');
+  if(closeGalerie) closeGalerie.addEventListener('click', () => galerieLightbox.style.display = 'none');
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + galerieImages.length) % galerieImages.length;
+    galerieLightboxImg.src = galerieImages[currentIndex].src;
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % galerieImages.length;
+    galerieLightboxImg.src = galerieImages[currentIndex].src;
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if(galerieLightbox.style.display === 'flex') {
+      if(e.key === 'ArrowRight') nextBtn.click();
+      if(e.key === 'ArrowLeft') prevBtn.click();
+      if(e.key === 'Escape') galerieLightbox.style.display = 'none';
+    }
+    if(heroLightbox.style.display === 'flex' && e.key === 'Escape') heroLightbox.style.display = 'none';
+  });
+})();
+
+  </script>
+</body>
+</html>

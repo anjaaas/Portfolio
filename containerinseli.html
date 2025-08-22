@@ -11,7 +11,7 @@
     <div class="header-container">
       <div class="logo"><a href="index.html">Anja Giossi</a></div>
       <nav>
-        <a href="index.html#projekte"class="active">Projekte</a>
+        <a href="projekte.html">Projekte</a>
         <a href="ueber-mich.html">Über mich</a>
       </nav>
     </div>
@@ -19,27 +19,120 @@
 
   <main>
     <section class="projekt-einzeln">
-      <h1>Containeri</h1>
-      <p>Bei einer Zwischennutzung auf dem Inseli in Luzern könnte man fast alles hinstellen, Platz hat man ja. Da kommt nur die Frage auf, was man dann bezwecken will?
+      <h1>Containerinseli</h1>
+      <p><strong>Umnutzungskonzept, Visualisierung</strong></p>
+      <!-- Hero -->
+      <div class="bild-container hero-container">
+        <img src="containerinseli_visual.jpg" alt="Containerinseli Hero" class="projektbild" id="hero-img"/>
+      </div>
+      <p class="hero-datum">10.–11.2023</p>
 
-<p></p>Bei mir ganz klar, die Kultur, die Kunst in der Öffentlichkeit ins Zentrum bringen. Das funktioniert am besten, wenn man Künstler*innen einfach Platz gibt, sich auszubreiten.
-Hier nun auf meinem Containerinseli.</p>
-     
+      <div class="detail-separator"></div>
 
-      <img src="media/ruhe-bild1.jpg" alt="Visualisierung Raum für Ruhe" class="projektbild" />
-      <img src="media/ruhe-bild2.jpg" alt="Modell oder Materialstudie" class="projektbild" />
+      <!-- Projektbeschreibung -->
+      <p>Bei einer Zwischennutzung auf dem Inseli in Luzern könnte man fast alles hinstellen, Platz hat man ja. Da kommt nur die Frage auf, was man dann bezwecken will?</p>
+      <p>Bei mir ganz klar, die Kultur, die Kunst in der Öffentlichkeit ins Zentrum bringen. Das funktioniert am besten, wenn man Künstler*innen einfach Platz gibt, sich auszubreiten. Hier nun auf meinem Containerinseli.</p>
 
-      <!-- Weitere Inhalte möglich: -->
-      <!-- <p>Textabschnitt zu Konzept, Materialien oder Nutzung</p> -->
+      <div class="detail-separator"></div>
+
+      <div class="galerie-beschreibung">Visualisierungen</div>
+      <!-- Galerie volle Breite -->
+      <div class="bilder-galerie-full">
+        <div class="bild-container"><img src="containerinseli1.jpg" alt="Skizze 1" class="galerie-img"></div>
+        <div class="bild-container"><img src="containerinseli2.jpg" alt="Skizze 2" class="galerie-img"></div>
+        <div class="bild-container"><img src="containerinseli3.jpg" alt="Skizze 3" class="galerie-img"></div>
+      </div>
+
+      <div class="detail-separator"></div>
+
+      <!-- Weitere Textabschnitte mittig -->
+      <p>Die Idee hinter dem Containerinseli war, Räume für Kreativität und Begegnung zu schaffen, ohne dass feste Strukturen den Ablauf vorgeben. Die Container dienen als flexible Bühne für verschiedene Nutzungen.</p>
+
+      <!-- Zurück-Link -->
+      <div class="zurueck">
+        <a href="projekte.html">&larr; Zurück zu Projekten</a>
+      </div>
     </section>
-
-    <nav class="zurueck">
-      <a href="projekte.html">← Zurück zur Übersicht</a>
-    </nav>
   </main>
 
   <footer>
     <p>&copy; 2025 Anja Giossi</p>
   </footer>
+
+  <!-- Hero Lightbox -->
+  <div id="hero-lightbox" class="lightbox">
+    <span class="close" id="close-hero">&times;</span>
+    <img id="hero-lightbox-img" src="" alt="">
+  </div>
+
+  <!-- Galerie Lightbox -->
+  <div id="galerie-lightbox" class="lightbox">
+    <span class="close" id="close-galerie">&times;</span>
+    <img id="galerie-lightbox-img" src="" alt="">
+    <div class="nav">
+      <span class="prev">&#10094;</span>
+      <span class="next">&#10095;</span>
+    </div>
+  </div>
+
+  <script>
+// Hero Lightbox
+const heroImg = document.getElementById('hero-img');
+const heroLightbox = document.getElementById('hero-lightbox');
+const heroLightboxImg = document.getElementById('hero-lightbox-img');
+
+if(heroImg) {
+  heroImg.addEventListener('click', () => {
+    heroLightbox.style.display = 'flex';
+    heroLightboxImg.src = heroImg.src;
+  });
+}
+
+const closeHero = document.getElementById('close-hero');
+if(closeHero) closeHero.addEventListener('click', () => heroLightbox.style.display = 'none');
+
+// Galerie Lightbox
+(function initGalerieLightbox(){
+  const galerieImages = document.querySelectorAll('.galerie-img');
+  if(galerieImages.length === 0) return; // keine Galerie? nichts tun
+
+  const galerieLightbox = document.getElementById('galerie-lightbox');
+  const galerieLightboxImg = document.getElementById('galerie-lightbox-img');
+  const prevBtn = galerieLightbox.querySelector('.prev');
+  const nextBtn = galerieLightbox.querySelector('.next');
+  let currentIndex = 0;
+
+  galerieImages.forEach((img, index) => {
+    img.addEventListener('click', () => {
+      galerieLightbox.style.display = 'flex';
+      galerieLightboxImg.src = img.src;
+      currentIndex = index;
+    });
+  });
+
+  const closeGalerie = document.getElementById('close-galerie');
+  if(closeGalerie) closeGalerie.addEventListener('click', () => galerieLightbox.style.display = 'none');
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + galerieImages.length) % galerieImages.length;
+    galerieLightboxImg.src = galerieImages[currentIndex].src;
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % galerieImages.length;
+    galerieLightboxImg.src = galerieImages[currentIndex].src;
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if(galerieLightbox.style.display === 'flex') {
+      if(e.key === 'ArrowRight') nextBtn.click();
+      if(e.key === 'ArrowLeft') prevBtn.click();
+      if(e.key === 'Escape') galerieLightbox.style.display = 'none';
+    }
+    if(heroLightbox.style.display === 'flex' && e.key === 'Escape') heroLightbox.style.display = 'none';
+  });
+})();
+
+  </script>
 </body>
 </html>
