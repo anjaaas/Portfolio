@@ -1219,3 +1219,33 @@ body.landing-page main { margin-top: 0 !important; }
   object-fit: contain !important;
   border-radius: 12px;
 }
+
+/* Schmale Galerie-Variante in Textbreite, linksbündig */
+.bilder-galerie--textbreite{
+  max-width: 70ch;      /* gleiche Breite wie dein Fließtext */
+  margin-right: auto;   /* links ausrichten */
+}
+
+/* 2-Spalten-Layout (Desktop), 1 Spalte mobil */
+.bilder-galerie--2{
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (max-width: 780px){
+  .bilder-galerie--2{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Wenn weniger als 3 Items drin sind → Textbreite & 2 Spalten */
+.bilder-galerie-full:not(:has(.bild-container:nth-child(3))),
+.bilder-reihe:not(:has(.bild-container:nth-child(3))){
+  max-width: 70ch;
+  margin-right: auto;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (max-width: 780px){
+  .bilder-galerie-full:not(:has(.bild-container:nth-child(3))),
+  .bilder-reihe:not(:has(.bild-container:nth-child(3))){
+    grid-template-columns: 1fr;
+  }
+}
