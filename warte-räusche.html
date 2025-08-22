@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Warte-Räusche – Anja Giossi</title>
   <link rel="stylesheet" href="style.css" />
-   <script src="main.js?v=1" defer></script>
+  <script src="main.js?v=1" defer></script>
 </head>
 <body>
   <header>
@@ -18,176 +18,107 @@
     </div>
   </header>
 
-  <main class="projekt-einzeln">
-      <div class="projekt-container"></div>
-       <h1>Warte-Räusche</h1>
-    <p><strong>Installation, Modell</strong></p>
-    <!-- Hero Bild -->
-    <img src="warte-raeusche_visual.jpg" alt="Warte-Räusche" class="projektbild hero">
-    <p class="hero-datum">11.2022</p>
+  <main>
+    <section class="projekt-einzeln">
+      <h1>Warte-Räusche</h1>
+      <p><strong>Installation, Modell</strong></p>
 
-    <div class="detail-separator"></div>
+      <div class="bild-container hero-container">
+      <img src="warte-raeusche_visual.jpg" alt="Warte-Räusche – Visualisierung (Hero)" class="projektbild" id="hero-img">
+      <p class="hero-datum">11.2022</p>
 
-    <!-- Projekttitel -->
-    <p> Das Warten am Bahnhof, ein unausweichliches Ereignis. 
-Wir warten auf unsere nächste Verbindung, auf Personen, wir warten auf das Ankommen … 
+      <div class="detail-separator"></div>
 
-<p>Das Warten ist für uns normal geworden. Dadurch gehen die Umgebung und ihre Töne verloren. 
-    <br>Also was, wenn wir die Menschen wieder darauf aufmerksam machen. <p></p>
+      <!-- Text (bereinigt, aber inhaltlich unverändert) -->
+      <p>Das Warten am Bahnhof, ein unausweichliches Ereignis. Wir warten auf unsere nächste Verbindung, auf Personen, wir warten auf das Ankommen …</p>
+      <p>Das Warten ist für uns normal geworden. Dadurch gehen die Umgebung und ihre Töne verloren. Also was, wenn wir die Menschen wieder darauf aufmerksam machen?</p>
+      <p>Konfrontieren wir sie mit den Tönen am Bahnhof. Machen wir ein Erlebnis draus.</p>
 
-Konfrontieren wir sie mit den Tönen am Bahnhof. 
-<br>Machen wir ein Erlebnis draus.
-</p>
+      <div class="detail-separator"></div>
 
-<div class="detail-separator"></div>
+      <p class="galerie-beschreibung">Projektidee, Skizzen</p>
+      <div class="bilder-galerie-full">
+        <img src="warte-raeusche_skizze_analog.jpg"   alt="Skizze analog" class="galerie-img">
+        <img src="warte-raeusche_skizze_plan.jpg"     alt="Skizze Plan"   class="galerie-img">
+        <img src="warte-raeusche_skizze_procreate.jpg" alt="Skizze Procreate" class="galerie-img">
+      </div>
 
- <!-- Bild Grid -->
-   <!-- Einzelne Bilder anklickbar, aufploppen
- <div class="bilder-grid">
-      <img src="media/warte-räusche_skizze_procreate.png" alt="Skizze 1" onclick="openLightbox(this)">
-      <img src="media/warte-räusche_skizze_analog.png" alt="Skizze 2" onclick="openLightbox(this)">
-      <img src="media/warte-räusche_skizze_plan.png" alt="Visual 2" onclick="openLightbox(this)">
-    </div> -->
+      <p class="galerie-beschreibung">Modell</p>
+      <div class="bilder-galerie-full">
+        <img src="warte-raeusche_modell_seite.jpg"  alt="Modell Seitenansicht" class="galerie-img">
+        <img src="warte-raeusche_modell_vorne.jpg"  alt="Modell Frontansicht"  class="galerie-img">
+      </div>
 
+      <p class="galerie-beschreibung">Audio</p>
+      <div class="projekt-video">
+        <video controls playsinline preload="metadata" style="width:100%; border-radius:12px;">
+          <source src="warte-raeusche_audio.mp4" type="video/mp4">
+          Dein Browser unterstützt das Video-Tag nicht.
+        </video>
+        <figcaption>So könnte es sich im Innern des Wartehäuschens anhören.</figcaption>
+      </div>
 
-     <p class="galerie-beschreibung">Projektidee, Skizzen</p>
-    <div class="bilder-reihe">
-    <img src="warte-raeusche_skizze_analog.jpg" alt="Bild 1" class="galerie-img">
-    <img src="warte-raeusche_skizze_plan.jpg" alt="Bild 2" class="galerie-img">
-    <img src="warte-raeusche_skizze_procreate.jpg" alt="Bild 3" class="galerie-img">
-  </div>
-   
-
-       <p class="galerie-beschreibung">Modell</p>
-    <div class="bilder-reihe">
-      <img src="warte-raeusche_modell_seite.jpg" alt="Skizze 1" class="galerie-img">
-      <img src="warte-raeusche_modell_vorne.jpg" alt="Skizze 2" class="galerie-img">
-    </div>
-    
-
-  <!-- Video -->
-  <p class="galerie-beschreibung">Audio</p>
-  <div class="projekt-video">
-    <video controls width="100%">
-      <source src="warte-raeusche_audio.mp4" type="video/mp4">
-      Dein Browser unterstützt das Video-Tag nicht.
-    </video>
-    <figcaption>So könnte es sich im Innern des Wartehäusschens anhören.</figcaption>
-  </div>
-
-</section>
-
-<!-- Lightbox -->
-<div id="lightbox">
-  <span class="close">&times;</span>
-  <img id="lightbox-img" src="" alt="">
-  <div class="nav">
-    <span class="prev">&#10094;</span>
-    <span class="next">&#10095;</span>
-  </div>
-</div>
-
-     
-
-
-    <!-- Zweites Textstück -->
-    <!-- <p>Die Visualisierungen zeigen, wie Licht und Materialität zusammenspielen und den Raum 
-    in verschiedenen Tageszeiten beeinflussen.</p> -->
-
-    <!-- Weiteres großes Bild -->
-    <!-- <img src="media/raumfueruhe_visual3.jpg" alt="Raum für Ruhe Ansicht 2" class="projektbild"> -->
-
-    <!-- Zurück-Link -->
-    <div class="zurueck">
-      <a href="projekte.html">← Zurück zu den Projekten</a>
-    </div>
+      <div class="zurueck">
+        <a href="projekte.html">&larr; Zurück zu Projekten</a>
+      </div>
+    </section>
   </main>
 
   <footer>
     <p>&copy; 2025 Anja Giossi</p>
   </footer>
 
-<!-- Lightbox -->
-<div id="lightbox" class="lightbox" onclick="closeLightbox()">
-  <span class="close">&times;</span>
-  <img class="lightbox-content" id="lightbox-img">
-</div>
+  <!-- Hero Lightbox -->
+  <div id="hero-lightbox" class="lightbox">
+    <span class="close" id="close-hero">&times;</span>
+    <img id="hero-lightbox-img" src="" alt="">
+  </div>
 
-<!-- Javascirpt für einzel Bild zum anklicken
- <script>
-function openLightbox(img) {
-  document.getElementById("lightbox").style.display = "flex";
-  document.getElementById("lightbox-img").src = img.src;
-}
+  <!-- Galerie Lightbox -->
+  <div id="galerie-lightbox" class="lightbox">
+    <span class="close" id="close-galerie">&times;</span>
+    <img id="galerie-lightbox-img" src="" alt="">
+    <div class="nav">
+      <span class="prev">&#10094;</span>
+      <span class="next">&#10095;</span>
+    </div>
+  </div>
 
-function closeLightbox() {
-  document.getElementById("lightbox").style.display = "none";
-}
-</script> -->
+  <script>
+  // Hero Lightbox
+  const heroImg = document.getElementById('hero-img');
+  const heroLightbox = document.getElementById('hero-lightbox');
+  const heroLightboxImg = document.getElementById('hero-lightbox-img');
+  if(heroImg){ heroImg.addEventListener('click', () => { heroLightbox.style.display='flex'; heroLightboxImg.src = heroImg.src; }); }
+  const closeHero = document.getElementById('close-hero');
+  if(closeHero){ closeHero.addEventListener('click', () => heroLightbox.style.display='none'); }
 
-<!-- javascript für durchklichen Bilderreihe -->
- <script>
-const images = document.querySelectorAll('.galerie-img');
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const closeBtn = document.querySelector('.close');
-const prevBtn = document.querySelector('.prev');
-const nextBtn = document.querySelector('.next');
+  // Galerie Lightbox
+  (function(){
+    const galerieImages = document.querySelectorAll('.galerie-img');
+    if(!galerieImages.length) return;
+    const galerieLightbox = document.getElementById('galerie-lightbox');
+    const galerieLightboxImg = document.getElementById('galerie-lightbox-img');
+    const prevBtn = galerieLightbox.querySelector('.prev');
+    const nextBtn = galerieLightbox.querySelector('.next');
+    let currentIndex = 0;
 
-let currentIndex = 0;
+    galerieImages.forEach((img, i) => {
+      img.addEventListener('click', () => { galerieLightbox.style.display='flex'; galerieLightboxImg.src = img.src; currentIndex = i; });
+    });
+    document.getElementById('close-galerie').addEventListener('click', () => galerieLightbox.style.display='none');
+    prevBtn.addEventListener('click', () => { currentIndex = (currentIndex-1+galerieImages.length)%galerieImages.length; galerieLightboxImg.src = galerieImages[currentIndex].src; });
+    nextBtn.addEventListener('click', () => { currentIndex = (currentIndex+1)%galerieImages.length; galerieLightboxImg.src = galerieImages[currentIndex].src; });
 
-images.forEach((img, index) => {
-  img.addEventListener('click', () => {
-    currentIndex = index;
-    showImage();
-    lightbox.style.display = 'flex';
-  });
-});
-
-function showImage() {
-  lightboxImg.src = images[currentIndex].src;
-  lightboxImg.alt = images[currentIndex].alt;
-}
-
-closeBtn.addEventListener('click', () => {
-  lightbox.style.display = 'none';
-});
-
-prevBtn.addEventListener('click', () => {
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  showImage();
-});
-
-nextBtn.addEventListener('click', () => {
-  currentIndex = (currentIndex + 1) % images.length;
-  showImage();
-});
-
-lightbox.addEventListener('click', (e) => {
-  if (e.target === lightbox) lightbox.style.display = 'none';
-});
-
-// Tastatursteuerung
-document.addEventListener('keydown', (e) => {
-  if (lightbox.style.display === 'flex') { // nur wenn Lightbox offen
-    if (e.key === 'ArrowLeft') {
-      // vorheriges Bild
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      showImage();
-    } else if (e.key === 'ArrowRight') {
-      // nächstes Bild
-      currentIndex = (currentIndex + 1) % images.length;
-      showImage();
-    } else if (e.key === 'Escape') {
-      // Lightbox schließen
-      lightbox.style.display = 'none';
-    }
-  }
-});
-</script>
-
-
+    document.addEventListener('keydown', (e) => {
+      if(galerieLightbox.style.display==='flex'){
+        if(e.key==='ArrowRight') nextBtn.click();
+        if(e.key==='ArrowLeft')  prevBtn.click();
+        if(e.key==='Escape')     galerieLightbox.style.display='none';
+      }
+      if(heroLightbox.style.display==='flex' && e.key==='Escape') heroLightbox.style.display='none';
+    });
+  })();
+  </script>
 </body>
-
-
 </html>

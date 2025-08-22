@@ -495,12 +495,6 @@ p {
 }
 
 /* Versuch Projektseite */
-/* Galerie volle Breite */
-.bilder-galerie-full .bild-container {
-  display: inline-block;
-  margin: 8px;
-  vertical-align: top;
-}
 
 .bilder-galerie-full .bild-container img {
    width: 100%;        /* passt Bild an Containerbreite an */
@@ -508,14 +502,6 @@ p {
   border-radius: 12px;
   cursor: pointer;
   object-fit: contain;  /* bleibt für kleine Vorschaubilder */
-}
-
-.bilder-galerie-full {
-  display: flex;
-  gap: 10px;
-  margin-top: 0;
-  margin-bottom: 40px;
-  overflow-x: auto; /* Scrollen bei kleinen Bildschirmen */
 }
 
 .bilder-galerie-full img {
@@ -1107,4 +1093,129 @@ body.landing-page.no-scroll {
 }
 .projekt-datum{
   margin: 10px 0 0 0; /* nah am Bild, wie gewünscht */
+}
+
+/* header Fixed behalten + dynamische Abstände */
+/* === Dynamische Header-Höhe für Abstände & Anker-Jumps === */
+:root { --header-h: 80px; }                /* Fallback, wird per JS überschrieben */
+
+html { scroll-padding-top: var(--header-h); } /* #anker landen nicht unter dem Header */
+
+/* Globaler Inhalts-Offset statt fixer 100px */
+main { margin-top: calc(var(--header-h) + 12px) !important; }
+
+/* Projekt-Detailseiten dürfen etwas mehr Luft oben haben */
+.projekt-einzeln { margin-top: calc(var(--header-h) + 40px); }
+
+/* Landing soll exakt mittig bleiben (kein Offset) */
+body.landing-page main { margin-top: 0 !important; }
+
+/* Optional: dezenter Schatten erst NACH Scroll (bleibt dein Look) */
+.header--scrolled {
+  background: #fffefb;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+/* === Projekt-Detailseiten: Bilder wie "Containerinseli" =================== */
+
+/* Hero: volle Breite, niemals croppen */
+.projekt-einzeln .bild-container.hero-container{
+  aspect-ratio: auto;            /* überschreibt die globale 4/3-Vorgabe */
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.projekt-einzeln .bild-container.hero-container img{
+  width: 100%;
+  height: auto;
+  object-fit: contain !important; /* niemals abschneiden */
+  display: block;
+  border-radius: 12px;
+}
+
+/* Galerie: grid, keine erzwungene Höhe/Ratio -> Hochformat wird vollständig gezeigt */
+.projekt-einzeln .bilder-galerie-full{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 0;
+  margin-bottom: 20px;            /* kompakter Abschluss */
+}
+@media (min-width: 780px){
+  .projekt-einzeln .bilder-galerie-full{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Jedes Galerie-Item */
+.projekt-einzeln .bilder-galerie-full .bild-container{
+  aspect-ratio: auto;             /* KEIN festes 4/3 in der Galerie */
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+/* Bilder in der Galerie: immer vollständig anzeigen (keine Beschnitte) */
+.projekt-einzeln .bilder-galerie-full .bild-container img,
+.projekt-einzeln .bilder-galerie-full img.galerie-img{
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important; /* wichtig für Hochformat */
+  display: block;
+  max-height: none !important;
+  border-radius: 12px;
+}
+
+/* Ältere generische Regeln überschreiben (die evtl. croppen/max-height setzen) */
+.projekt-einzeln .bilder-reihe img,
+.projekt-einzeln .bilder-galerie img,
+.projekt-einzeln .bilder-grid img{
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  max-height: none !important;
+  border-radius: 12px;
+}
+
+/* ===== Galerien: kein horizontales Scrollen, 3 Spalten Desktop, 1 Spalte Mobile ===== */
+.bilder-galerie-full,
+.bilder-reihe,
+.bilder-galerie,
+.bilder-grid{
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  overflow-x: hidden !important;  /* Scroll-Leiste aus */
+  margin-top: 0;                  /* kompakt bleiben */
+  margin-bottom: 20px;            /* kleiner Abschluss */
+}
+
+@media (max-width: 780px){
+  .bilder-galerie-full,
+  .bilder-reihe,
+  .bilder-galerie,
+  .bilder-grid{
+    grid-template-columns: 1fr;   /* untereinander am Handy */
+  }
+}
+
+/* Child-Container normalisieren (alte inline-block + Margins neutralisieren) */
+.bilder-galerie-full .bild-container,
+.bilder-reihe .bild-container,
+.bilder-galerie .bild-container,
+.bilder-grid .bild-container{
+  display: block !important;
+  margin: 0 !important;
+}
+
+/* Bilder vollständig zeigen (kein Cropping) – passt auch für Hochformat */
+.bilder-galerie-full img,
+.bilder-reihe img,
+.bilder-galerie img,
+.bilder-grid img{
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  border-radius: 12px;
 }
