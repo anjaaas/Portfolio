@@ -102,6 +102,13 @@ h1, h2, h3 {
   border-left: 1px dashed #999;
 }
 
+.projekt-datum {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
 a {
   color: #222;
 }
@@ -156,6 +163,7 @@ footer {
   max-width: 900px;
   margin: 80px auto;
   padding: 0 20px;
+   margin-bottom: 8px; /* Abstand zwischen Titel und Bild */
 }
 
 .projektbild {
@@ -272,6 +280,21 @@ p {
   opacity: 0; /* Skizze verschwindet beim Hover */
 }
 
+/* Hero-Bild im Projekt */
+.bild-container.hero-container {
+   width: 100%;          /* volle Breite des Textbereichs */
+  height: auto;         /* Höhe automatisch nach Bild */
+  margin-bottom: 0;     /* Abstand zum Datum minimal */
+}
+
+.bild-container.hero-container img {
+  width: 100%;          /* passt sich der Breite an */
+  height: auto;         /* proportional */
+  object-fit: contain;  /* kein Abschneiden */
+  border-radius: 16px;  /* falls du runde Ecken willst */
+  display: block;       /* entfernt kleine Abstände unter Bildern */
+}
+
 /* Projekt Detailseite */
 
 .projekt-einzeln {
@@ -283,12 +306,26 @@ p {
 .projektbild {
   width: 100%;
   border-radius: 8px;
-  margin: 40px 0;
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 .projektbild.hero {
-  margin-top: 0;       /* Hero-Bild direkt oben */
+ margin-top: 0;       /* kein Abstand nach oben */
+  margin-bottom: 10px; /* nur kleiner Abstand nach unten */
   border-radius: 0;    /* hero vollflächig wirken lassen */
+}
+
+.hero-datum {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  color: #555;
+   margin-top: 0; /* entfernt extra Abstand oben */
+  margin-bottom: 2rem; /* Abstand zum nächsten Abschnitt */
+  text-align: left;
+  /* border-left: 1px dashed #999;
+  padding-left: 10px; */
+  display: inline-block;
 }
 
 .zurueck {
@@ -408,6 +445,7 @@ p {
 .bilder-reihe, .bilder-galerie, .bilder-grid {
   display: flex;
   gap: 10px;
+  margin-bottom: 20px;
 }
 
 .bilder-reihe img, .bilder-galerie img, .bilder-grid img {
@@ -423,3 +461,650 @@ p {
   flex: 1; /* Bilder teilen sich den Platz gleichmäßig */
 }
 
+/* Kontakt Links ueber-mich */
+.kontakt-links {
+  margin-top: 40px; /* Abstand nach dem Text */
+  text-align: left; /* linksbündig wie dein Text */
+}
+
+.kontakt-links hr {
+  border: none;
+  border-top: 1px dashed #999; /* gestrichelte Linie */
+  margin-bottom: 15px; /* Abstand zu den Links */
+}
+
+.kontakt-links a {
+  text-decoration: none;
+  color: #222;
+  margin-right: 20px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  border-bottom: 1px dotted #aaa; /* wie bei Projekten */
+  padding-bottom: 2px;
+}
+
+.kontakt-links a:hover {
+  opacity: 0.7;
+  border-bottom-color: #222; /* beim Hover etwas dunkler */
+}
+
+.detail-separator {
+  border-top: 1px dashed #999; /* gleiche Farbe und Stil wie bei den anderen Linien */
+  margin: 24px 0;              /* Abstand ober- und unterhalb der Linie */
+  width: 100%;                 /* volle Breite des Containers */
+}
+
+/* Versuch Projektseite */
+/* Galerie volle Breite */
+.bilder-galerie-full .bild-container {
+  display: inline-block;
+  margin: 8px;
+  vertical-align: top;
+}
+
+.bilder-galerie-full .bild-container img {
+   width: 100%;        /* passt Bild an Containerbreite an */
+  height: auto;       /* Hochformat bleibt vollständig */
+  border-radius: 12px;
+  cursor: pointer;
+  object-fit: contain;  /* bleibt für kleine Vorschaubilder */
+}
+
+.bilder-galerie-full {
+  display: flex;
+  gap: 10px;
+  margin-top: 0;
+  margin-bottom: 40px;
+  overflow-x: auto; /* Scrollen bei kleinen Bildschirmen */
+}
+
+.bilder-galerie-full img {
+  width: 100%;
+  height: auto;
+  max-width: 1200px;
+  border-radius: 12px;
+  cursor: pointer;
+  object-fit: contain; /* Hochformat bleibt sichtbar */
+}
+
+/* Grundstil für beide Lightboxes */
+.lightbox {
+  display: none; /* unsichtbar, bis aktiviert */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Bildcontainer als zentriertes Popup */
+.lightbox img {
+  max-width: 80%;
+  max-height: 80%;
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+/* Galerie-Lightbox */
+#galerie-lightbox img {
+  max-width: 80%;
+  max-height: 80%;
+  width: auto;        /* proportional skalieren */
+  height: auto;
+  border-radius: 12px;
+  object-fit: contain; /* hochformatige Bilder werden komplett angezeigt */
+}
+
+/* Close-Button */
+.lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Navigation für Galerie */
+.lightbox .nav span {
+  position: absolute;
+  top: 50%;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  padding: 0;               /* Kein Padding mehr */
+  background: none;          /* Kein Hintergrund */
+  border-radius: 0;          /* Keine Abrundung */
+  transform: translateY(-50%);
+  transition: opacity 0.2s;
+}
+
+.lightbox .nav span:hover {
+  opacity: 0.7;             /* leichter Hover-Effekt */
+}
+
+.lightbox .nav .prev { left: 20px; }
+.lightbox .nav .next { right: 20px; }
+
+/* Optional: Hover-Effekt, damit man sieht, dass es klickbar ist */
+.bild-container img:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.hero-container {
+margin-bottom: 0; /* Abstand zwischen Bild und Datum */
+  border-radius: 12px; /* runde Ecken für das Hero-Bild */
+  overflow: hidden;
+}
+
+.hero-container img {
+  width: 100%;
+  height: auto; /* Hochformatbilder werden nicht abgeschnitten */
+  object-fit: cover; /* Bild füllt den Container und behält Proportionen */
+  display: block;
+}
+
+.hero-datum {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0 0 30px 0;  /* direkt unter Bild, dann Abstand nach unten */
+  text-align: left;
+  /* border-left: 1px dashed #999;
+  padding-left: 10px; */
+  display: inline-block;
+}
+
+/* Hero Lightbox (falls nötig) */
+#hero-lightbox img {
+  max-width: 80%;
+  max-height: 80%;
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+/* Landing Page */
+body.no-scroll {
+  overflow: hidden; /* scrollen nur auf Landing-Page deaktiviert */
+}
+
+
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertikale Mitte */
+  align-items: center;     /* horizontale Mitte */
+  height: 100vh;
+  text-align: center;
+}
+
+.name {
+  font-size: 5rem;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeInUp 1s ease forwards;
+}
+
+.link-dezent {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #555;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fadeInUp 1s ease forwards 0.5s; /* verzögert einblenden */
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.landing-name {
+  font-size: 4rem; /* sehr groß */
+  margin: 0;
+}
+
+.landing-subtitle {
+  font-size: 1.5rem;
+  margin: 0.5rem 0 2rem 0;
+  font-weight: normal;
+  color: #555; /* dezenter Untertitel */
+}
+
+.landing-link {
+  font-size: 1rem;
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px solid #000;
+  padding-bottom: 2px;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.landing-link:hover {
+  color: #ff4f00; /* Akzentfarbe */
+  border-color: #ff4f00;
+}
+
+/*Projekt einzeln*/
+/* Projekt einzeln */
+.projekt-einzeln {
+  max-width: 1100px;       /* Gesamte Breite für Bilder und Texte */
+  margin: 120px auto;      /* Abstand unter Header, mittig auf der Seite */
+  padding: 0 20px;
+  text-align: left;
+}
+
+.projekt-einzeln h1,
+.projekt-einzeln h2,
+.projekt-einzeln p {
+  text-align: left;        /* alles linksbündig */
+  max-width: 70ch;         /* bessere Lesbarkeit der Fließtexte */
+}
+
+.projektbild {
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.hero-datum {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0 0 30px 0;
+  text-align: left;
+  display: inline-block;
+}
+
+.galerie-beschreibung {
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.bilder-galerie-full {
+  display: flex;
+  gap: 10px;
+  margin-top: 0;
+  margin-bottom: 20px; /* << Abstand reduziert */
+  overflow-x: auto;
+}
+
+.bilder-galerie-full .bild-container img {
+  border-radius: 12px;
+  cursor: pointer;
+  object-fit: contain;
+}
+
+.projekt-einzeln .zurueck {
+  text-align: center;      /* Zurück-Pfeil mittig */
+  margin-top: 40px;
+}
+
+footer {
+  text-align: center;      /* Footer mittig */
+}
+
+/* Landing Page volle Mitte */
+body.landing-page.no-scroll {
+  height: 100vh;       /* ganze Höhe */
+  overflow: hidden;    /* kein Scrollen */
+  margin: 0;
+}
+
+.landing {
+  height: 100%;
+  display: flex;
+  align-items: center;    /* vertikal Mitte */
+  justify-content: center;/* horizontal Mitte */
+  text-align: center;     /* Texte zentriert */
+}
+
+.landing-container {
+  max-width: 90%;
+}
+
+/* Name + Animation + Cursor */
+.landing-name {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(3rem, 8vw, 5rem);
+  margin: 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  animation: fadeInUp 700ms ease forwards;
+  position: relative;
+  display: inline-block;
+}
+
+.landing-name::after {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 1.05em;
+  border-right: 2px solid #222;
+  margin-left: 6px;
+  vertical-align: -0.15em;
+  animation: caretBlink 1s steps(1) infinite;
+}
+
+@keyframes caretBlink { 50% { border-right-color: transparent; } }
+
+.landing-subtitle {
+  font-size: clamp(1rem, 2.2vw, 1.4rem);
+  color: #555;
+  margin: 0.5rem 0 2rem 0;
+  opacity: 0;
+  transform: translateY(-6px);
+  animation: fadeInUp 700ms ease forwards 150ms;
+}
+
+.landing-link {
+  font-size: 1rem;
+  text-decoration: none;
+  color: #000;
+  border-bottom: 1px dashed #222;
+  padding-bottom: 2px;
+  opacity: 0;
+  transform: translateY(-4px);
+  animation: fadeInUp 700ms ease forwards 300ms;
+  transition: opacity 0.25s;
+}
+
+.landing-link:hover { opacity: 0.6; }
+
+.landing-actions {
+  display: inline-flex;
+  gap: 1.25rem;
+  justify-content: center; /* zentriert, weil die Landing mittig ist */
+  align-items: baseline;
+}
+
+.landing-actions .cta-primary {
+  text-decoration: none;
+  border-bottom: 1px solid #000;   /* klarer, stärker */
+  color: #000;
+  padding-bottom: 2px;
+}
+
+.landing-actions .cta-secondary {
+  text-decoration: none;
+  border-bottom: 1px dotted #222;  /* dezenter, skizzenhaft */
+  color: #222;
+  opacity: 0.85;
+}
+
+.landing-actions a:focus {
+  outline: 2px dashed #222;        /* skizzenhafter Fokus */
+  outline-offset: 3px;
+}
+
+/* Landing – vertikale Links, klarer Hover/Fokus */
+.landing-actions{
+  display: inline-flex;
+  flex-direction: column;   /* untereinander */
+  gap: 0.8rem;
+  align-items: center;      /* zentriert in der Mitte des Screens */
+  margin-top: 0.25rem;
+}
+
+/* Basis: größere Klickflächen, skizzenhafte Unterstreichung */
+.landing-actions a{
+  display: inline-block;
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  color: #000;
+  text-decoration: none;
+  padding: 6px 2px;         /* bessere Hit-Area */
+  border-bottom: 1px dotted #222;
+  transition: transform .15s ease, color .15s ease, border-color .15s ease, opacity .15s ease, background-color .15s ease;
+  outline: none;
+}
+
+/* Primärer Call-to-Action optisch etwas stärker */
+.landing-actions .cta-primary{
+  border-bottom-style: solid;
+}
+
+/* Hover: klarer Hinweis (Farbe + leichte Bewegung) */
+@media (hover:hover){
+  .landing-actions .cta-primary:hover{
+    color: #ff4f00;
+    border-color: #ff4f00;
+    transform: translateX(3px);    /* „Pfeil bewegt sich“ Gefühl */
+    background-color: rgba(0,0,0,0.04);
+  }
+  .landing-actions .cta-secondary:hover{
+    color: #000;
+    border-color: #000;
+    transform: translateX(2px);
+    opacity: 0.85;
+    background-color: rgba(0,0,0,0.03);
+  }
+}
+
+/* Tastatur-Fokus gut sichtbar (skizzenhaft) */
+.landing-actions a:focus-visible{
+  outline: 2px dashed #222;
+  outline-offset: 3px;
+}
+
+/* dezentes Fade-in wie beim Titel/Untertitel */
+.landing-actions .cta-primary{
+  opacity: 0; transform: translateY(-4px);
+  animation: fadeInUp 700ms ease forwards 300ms;
+}
+.landing-actions .cta-secondary{
+  opacity: 0; transform: translateY(-2px);
+  animation: fadeInUp 700ms ease forwards 450ms;
+}
+
+/* Name als Link – minimal, aber klar klickbar */
+.landing-name-link{
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px dotted transparent; /* im Normalzustand unsichtbar */
+  padding-bottom: 2px;
+  display: inline-block;                 /* für kleine Bewegungen beim Hover */
+  transition: transform .15s ease, border-color .15s ease, color .15s ease;
+  outline: none;
+  cursor: pointer;
+}
+
+@media (hover:hover){
+  .landing-name-link:hover{
+    border-bottom-color: #000;           /* skizzenhafter Unterstrich */
+    transform: translateX(2px);          /* ganz leichte Bewegung */
+  }
+}
+
+.landing-name-link:focus-visible{
+  outline: 2px dashed #222;              /* skizzenhafter Fokusrahmen */
+  outline-offset: 4px;
+}
+
+/* 1) bisherigen Caret an .landing-name deaktivieren (falls vorhanden) */
+.landing-name::after { content: none !important; }
+
+/* 2) Name als Link: keine Border-Underline mehr */
+.landing-name-link{
+  color: #000;
+  text-decoration: none;            /* Standard: sauber, ohne Unterlinie */
+  padding-bottom: 0;                /* keine extra Höhe */
+  display: inline-block;
+  position: relative;               /* Anker für den Caret */
+  transition: transform .15s ease, color .15s ease;
+}
+
+/* Unterline nur bei Hover/Fokus – verursacht KEIN Layout-Shift */
+@media (hover:hover){
+  .landing-name-link:hover{
+    text-decoration: underline dotted;
+    text-underline-offset: 4px;
+    transform: translateX(2px);
+  }
+}
+.landing-name-link:focus-visible{
+  outline: 2px dashed #222;
+  outline-offset: 4px;
+  text-decoration: underline dotted;       /* auch per Tastatur sichtbar */
+  text-underline-offset: 4px;
+}
+
+/* 3) Caret absolut neben den Text setzen (nimmt keinen Platz ein) */
+.landing-name-link::after{
+  content: "";
+  position: absolute;
+  left: 100%;                     /* direkt hinter dem Text */
+  top: 0.08em;                    /* leicht nach unten, optisch mittig */
+  height: 1em;                    /* orientiert an der Zeilenhöhe */
+  width: 2px;
+  margin-left: 3px;               /* << enger an den Text ran */
+  background: #222;
+  animation: caretBlink 1s steps(1) infinite;
+}
+
+/* falls caretBlink noch nicht existiert */
+@keyframes caretBlink { 50% { opacity: 0; } }
+
+/* Nur EINE Unterstreichung am Namen: text-decoration */
+/* Alte Border-/Shadow-Unterstreichungen vollständig aus! */
+.landing-name-link,
+.landing-name-link:hover,
+.landing-name-link:focus-visible{
+  border: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Normalzustand: kein Unterstrich */
+.landing-name-link{
+  color: #000;
+  text-decoration: none;
+  position: relative;     /* für den Caret */
+  display: inline-block;
+  transition: transform .15s ease, color .15s ease, text-decoration-color .15s ease;
+}
+
+/* Hover: dezenter, punktierter Unterstrich ohne Layout-Shift */
+@media (hover:hover){
+  .landing-name-link:hover{
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-thickness: 1px;   /* fein */
+    text-underline-offset: 4px;       /* etwas Luft */
+    transform: translateX(2px);
+  }
+}
+
+/* Tastaturfokus: sichtbar + gleiche Unterstreichung */
+.landing-name-link:focus-visible{
+  outline: 2px dashed #222;
+  outline-offset: 4px;
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+/* Caret dicht am Text, ohne Layout zu verschieben */
+.landing-name::after { content: none !important; } /* alten Caret entfernen, falls noch aktiv */
+.landing-name-link::after{
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 0.08em;
+  height: 1em;
+  width: 2px;
+  margin-left: 3px;      /* Nähe zum Text; bei Bedarf 2px setzen */
+  background: #222;
+  animation: caretBlink 1s steps(1) infinite;
+}
+@keyframes caretBlink { 50% { opacity: 0; } }
+
+/* Karten-Link als Block: Titel + Bild + Datum klickbar */
+.projekt-link { display:block; text-decoration:none; color:inherit; }
+
+/* Titel über dem Bild, mit deinem vorhandenen h2-Stil kompatibel */
+.projekt-titel{
+  margin: 0 0 10px 0;
+}
+
+/* Bildcontainer für Overlay (du hast die Basis schon – hier nur sichergestellt) */
+.projekt-figure .bild-container,
+.projekt .bild-container{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+/* Skizze oben, Farbe unten */
+.bild-container .skizze{
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  transition: opacity .3s ease;
+  width:100%; height:100%; object-fit: cover; display:block;
+}
+.bild-container .render{
+  width:100%; height:100%; object-fit: cover; display:block;
+}
+
+/* Hover: Skizze ausblenden -> Farbe sichtbar */
+@media (hover:hover){
+  .projekt-link:hover .bild-container .skizze{ opacity: 0; }
+}
+/* Touch: beim Tippen wird trotzdem das Ziel geöffnet – kein Effekt nötig */
+
+/* Datum unter dem Bild, ohne zusätzlichen Rand */
+.projekt-datum{
+  margin: 10px 0 0 0;
+}
+
+.projekt-container .bild-container{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.projekt-container .bild-container img{
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.projekt-container .bild-container .skizze{
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  transition: opacity .3s ease;
+  }
+
+  .projekt-link{
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.projekt-titel{
+  margin: 0 0 10px 0; /* etwas Luft zum Bild */
+}
+.projekt-datum{
+  margin: 10px 0 0 0; /* nah am Bild, wie gewünscht */
+}
