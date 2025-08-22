@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raum für Ruhe – Anja Giossi</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo"><a href="index.html">Anja Giossi</a></div>
+      <nav>
+        <a href="projekte.html">Projekte</a>
+        <a href="ueber-mich.html">Über mich</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="projekt-einzeln">
+      <h1>Raum für Ruhe</h1>
+      <p><strong>Bachelorarbeit</strong></p>
+      <!-- Hero -->
+      <div class="bild-container hero-container">
+        <img src="127.jpg" alt="Containerinseli Hero" class="projektbild" id="hero-img"/>
+      </div>
+      <p class="hero-datum">03.–06.2025</p>
+
+      <div class="detail-separator"></div>
+
+      <!-- Projektbeschreibung -->
+      <p>Im Hochschulalltag stehen Studierende und Mitarbeitende oft unter hohem Leistungsdruck und Stress. Unsere 
+Hochschule bietet bislang keinen Raum für gezielte 
+Erholung und mentale Regeneration. </p>
+      <p>Daher widmet sich mein Projekt der Konzeption und 
+Gestaltung von funktionalen und ästhetisch ansprechenden Rückzugsmöglichkeiten an unserer Hochschule. Dafür werden Räume der Entspannung, Ruhe und Privatsphäre gestaltet, welche das Wohlbefinden, die Konzentrations-fähigkeit und psychische Gesundheit fördern sollen. Es 
+beinhaltet einen Ruheraum, einen Rückzugsraum und einen Still- und Sanitätsraum.</p>
+
+      <div class="detail-separator"></div>
+
+      <div class="galerie-beschreibung">Ruheraum</div>
+      <!-- Galerie volle Breite -->
+      <div class="bilder-galerie-full">
+        <div class="bild-container"><img src="127.jpg" alt="Skizze 1" class="galerie-img"></div>
+        <div class="bild-container"><img src="127_2.jpg" alt="Skizze 2" class="galerie-img"></div>
+        <div class="bild-container"><img src="127_3.jpg" alt="Skizze 3" class="galerie-img"></div>
+      </div>
+      
+      <p>Die Idee hinter dem Containerinseli war, Räume für Kreativität und Begegnung zu schaffen, ohne dass feste Strukturen den Ablauf vorgeben. Die Container dienen als flexible Bühne für verschiedene Nutzungen.</p>
+
+ <div class="detail-separator"></div>
+
+      <div class="galerie-beschreibung">Still- und Sanitätsraum</div>
+      <!-- Galerie volle Breite -->
+      <div class="bilder-galerie-full">
+        <div class="bild-container"><img src="441.jpg" alt="Skizze 1" class="galerie-img"></div>
+        <div class="bild-container"><img src="441_2.jpg" alt="Skizze 2" class="galerie-img"></div>
+        <div class="bild-container"><img src="441_3.jpg" alt="Skizze 3" class="galerie-img"></div>
+      </div>
+      
+      <p>Die Idee hinter dem Containerinseli war, Räume für Kreativität und Begegnung zu schaffen, ohne dass feste Strukturen den Ablauf vorgeben. Die Container dienen als flexible Bühne für verschiedene Nutzungen.</p>
+
+ <div class="detail-separator"></div>
+
+      <div class="galerie-beschreibung">Rückzugsraum</div>
+      <!-- Galerie volle Breite -->
+      <div class="bilder-galerie-full">
+        <div class="bild-container"><img src="019_1.jpg" alt="Skizze 1" class="galerie-img"></div>
+        <div class="bild-container"><img src="019_2.jpg" alt="Skizze 2" class="galerie-img"></div>
+        <div class="bild-container"><img src="019_3.jpg" alt="Skizze 3" class="galerie-img"></div>
+      </div>
+      
+      <p>Die Idee hinter dem Containerinseli war, Räume für Kreativität und Begegnung zu schaffen, ohne dass feste Strukturen den Ablauf vorgeben. Die Container dienen als flexible Bühne für verschiedene Nutzungen.</p>
+
+
+      <!-- Zurück-Link -->
+      <div class="zurueck">
+        <a href="projekte.html">&larr; Zurück zu Projekten</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Anja Giossi</p>
+  </footer>
+
+  <!-- Hero Lightbox -->
+  <div id="hero-lightbox" class="lightbox">
+    <span class="close" id="close-hero">&times;</span>
+    <img id="hero-lightbox-img" src="" alt="">
+  </div>
+
+  <!-- Galerie Lightbox -->
+  <div id="galerie-lightbox" class="lightbox">
+    <span class="close" id="close-galerie">&times;</span>
+    <img id="galerie-lightbox-img" src="" alt="">
+    <div class="nav">
+      <span class="prev">&#10094;</span>
+      <span class="next">&#10095;</span>
+    </div>
+  </div>
+
+  <script>
+// Hero Lightbox
+const heroImg = document.getElementById('hero-img');
+const heroLightbox = document.getElementById('hero-lightbox');
+const heroLightboxImg = document.getElementById('hero-lightbox-img');
+
+if(heroImg) {
+  heroImg.addEventListener('click', () => {
+    heroLightbox.style.display = 'flex';
+    heroLightboxImg.src = heroImg.src;
+  });
+}
+
+const closeHero = document.getElementById('close-hero');
+if(closeHero) closeHero.addEventListener('click', () => heroLightbox.style.display = 'none');
+
+// Galerie Lightbox
+(function initGalerieLightbox(){
+  const galerieImages = document.querySelectorAll('.galerie-img');
+  if(galerieImages.length === 0) return; // keine Galerie? nichts tun
+
+  const galerieLightbox = document.getElementById('galerie-lightbox');
+  const galerieLightboxImg = document.getElementById('galerie-lightbox-img');
+  const prevBtn = galerieLightbox.querySelector('.prev');
+  const nextBtn = galerieLightbox.querySelector('.next');
+  let currentIndex = 0;
+
+  galerieImages.forEach((img, index) => {
+    img.addEventListener('click', () => {
+      galerieLightbox.style.display = 'flex';
+      galerieLightboxImg.src = img.src;
+      currentIndex = index;
+    });
+  });
+
+  const closeGalerie = document.getElementById('close-galerie');
+  if(closeGalerie) closeGalerie.addEventListener('click', () => galerieLightbox.style.display = 'none');
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + galerieImages.length) % galerieImages.length;
+    galerieLightboxImg.src = galerieImages[currentIndex].src;
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % galerieImages.length;
+    galerieLightboxImg.src = galerieImages[currentIndex].src;
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if(galerieLightbox.style.display === 'flex') {
+      if(e.key === 'ArrowRight') nextBtn.click();
+      if(e.key === 'ArrowLeft') prevBtn.click();
+      if(e.key === 'Escape') galerieLightbox.style.display = 'none';
+    }
+    if(heroLightbox.style.display === 'flex' && e.key === 'Escape') heroLightbox.style.display = 'none';
+  });
+})();
+
+  </script>
+</body>
+</html>
