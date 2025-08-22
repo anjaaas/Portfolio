@@ -11,68 +11,80 @@
     <div class="header-container">
       <div class="logo"><a href="index.html">Anja Giossi</a></div>
       <nav>
-        <a href="index.html#projekte"class="active">Projekte</a>
+        <a href="projekte.html"class="active">Projekte</a>
         <a href="ueber-mich.html">Über mich</a>
       </nav>
     </div>
   </header>
 
-  <main>
-    <section id="alle-projekte">
-  <h1 class="seiten-titel">Projekte</h1>
+<main>
+  <section class="projekt-einzeln">
+    <h1 class="seiten-titel">Projekte</h1>
 
-    <div class="projekt-container">
-<div class="projekt">
-  <a href="raumfürruhe.html">
-    <h2>Raum für Ruhe</h2>
-    <div class="bild-container">
-     <img src="raumfürruhe_skizze.jpg" alt="Skizze Raum für Ruhe" class="skizze">
-      <img src="raumfürruhe.jpg" alt="Visualisierung Raum für Ruhe" class="visual">
+    <div class="projekt-container" role="list">
+
+ <!-- Raum für Ruhe -->
+      <article class="projekt" role="listitem">
+        <a class="projekt-link" href="raumfürruhe.html" aria-label="Raum für Ruhe öffnen">
+          <h2 class="projekt-titel">Raum für Ruhe</h2>
+
+          <div class="bild-container">
+            <img src="raumfuerruhe_skizze.png" alt="Raum für Ruhe – Skizze" class="skizze">
+            <img src="raumfuerruhe_visual.jpg" alt="Raum für Ruhe – Visualisierung" class="render">
+          </div>
+
+          <p class="projekt-datum">2025</p>
+        </a>
+      </article>
+
+      <!-- Containerinseli -->
+      <article class="projekt" role="listitem">
+        <a class="projekt-link" href="containerinseli.html" aria-label="Containerinseli öffnen">
+          <h2 class="projekt-titel">Containerinseli</h2>
+
+          <div class="bild-container">
+            <!-- Skizze oben (sichtbar), Farbe unten (wird beim Hover sichtbar) -->
+            <img src="containerinseli_skizze.jpg" alt="Containerinseli – Skizze" class="skizze">
+            <img src="containerinseli_visual.jpg" alt="Containerinseli – Visualisierung" class="render">
+          </div>
+
+          <p class="projekt-datum">2023</p>
+        </a>
+      </article>
+
+     
+
+      <!-- Warte-Räusche -->
+      <article class="projekt" role="listitem">
+        <a class="projekt-link" href="warte-räusche.html" aria-label="Warte-Räusche öffnen">
+          <h2 class="projekt-titel">Warte-Räusche</h2>
+
+          <div class="bild-container">
+            <img src="warte-raeusche_skizze.jpg" alt="Warte-Räusche – Skizze" class="skizze">
+            <img src="warte-raeusche_visual.jpg" alt="Warte-Räusche – Visualisierung" class="render">
+          </div>
+
+          <p class="projekt-datum">2022</p>
+        </a>
+      </article>
+
+      <!-- Ahhhttisholz -->
+      <article class="projekt" role="listitem">
+        <a class="projekt-link" href="ahhhttisholz.html" aria-label="Ahhhttisholz öffnen">
+          <h2 class="projekt-titel">Ahhhttisholz</h2>
+
+          <div class="bild-container">
+            <img src="aahtisholz_skizze.jpg" alt="Ahhhttisholz – Skizze" class="skizze">
+            <img src="aahtisholz_visual.jpg" alt="Ahhhttisholz – Visualisierung" class="render">
+          </div>
+
+          <p class="projekt-datum">2023</p>
+        </a>
+      </article>
     </div>
-  </a>
- <!-- <p>Konzeption, Visualisierung</p> -->
-</div>
+  </section>
+</main>
 
-  <div class="projekt">
-    <a href="containerinseli.html">
-      <h2>Containerinseli</h2>
-      <!--img src="media/Containerinseli.jpg" alt="Containerinseli"-->
-         <div class="bild-container">
-      <img src="containerinseli_skizze.jpg" alt="Skizze Containerinseli" class="skizze">
-      <img src="containerinseli_visual.jpg" alt="Containerinseli" class="visual">
-    </div>
-    </a>
-    <!-- <p>Konzeption, Visualisierung</p> -->
-  </div>
-
-  <div class="projekt">
-    <a href="warte-räusche.html">
-      <h2>Warte-Räusche</h2>
-         <div class="bild-container">
-      <img src="warte-raeusche_skizze.jpg" alt="Skizze Warte-Räusche" class="skizze">
-      <img src="warte-raeusche_visual.jpg" alt="Warte-Räusche" class="visual">
-    </div>
-    </a>
-   <!-- <p>Installation, Modell</p> -->
-  </div>
-
-   <div class="projekt">
-    <a href="ahhhttisholz.html">
-      <h2>Ahhhtisholz</h2>
-         <div class="bild-container">
-      <img src="aahtisholz_skizze.jpg" alt="Skizze Ahhhttisholz" class="skizze">
-      <img src="aahtisholz_visual.jpg" alt="Ahhhttisholz" class="visual">
-    </div>
-    </a>
-    <p>11-12.23</p>
-    <!-- <p>Konzeption, Visualisierung</p> -->
-  </div>
-
-
-
-  <!-- Weitere Projekte hier -->
-</section>
-  </main>
 
   <footer>
     <p>&copy; 2025 Anja Giossi</p>
