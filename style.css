@@ -1249,3 +1249,50 @@ body.landing-page main { margin-top: 0 !important; }
     grid-template-columns: 1fr;
   }
 }
+
+/* Spezial-Layout: links Portrait (span 2 rows), rechts 2 Querformate untereinander */
+.bilder-galerie-full.bilder-galerie--portrait-left-stack{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;      /* 2 Spalten */
+  gap: 10px;
+  align-items: stretch;
+}
+
+/* 1. Item (Portrait) über 2 Reihen ziehen + passende Fläche vorgeben */
+.bilder-galerie-full.bilder-galerie--portrait-left-stack .bild-container:nth-child(1){
+  grid-row: span 2;
+  aspect-ratio: 2 / 3;                 /* Portrait-Fläche (Bild bleibt contain, kein Crop) */
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* 2. & 3. Item (Querformate) – gestapelt rechts */
+.bilder-galerie-full.bilder-galerie--portrait-left-stack .bild-container:nth-child(2),
+.bilder-galerie-full.bilder-galerie--portrait-left-stack .bild-container:nth-child(3){
+  aspect-ratio: 16 / 9;                /* typische Querformat-Flächen */
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Bilder vollständig anzeigen (kein Zuschneiden) */
+.bilder-galerie-full.bilder-galerie--portrait-left-stack .bild-container img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;                  /* wichtig: komplettes Bild zeigen */
+  display: block;
+}
+
+/* Mobile: untereinander */
+@media (max-width: 780px){
+  .bilder-galerie-full.bilder-galerie--portrait-left-stack{
+    grid-template-columns: 1fr;
+  }
+  .bilder-galerie-full.bilder-galerie--portrait-left-stack .bild-container:nth-child(1){
+    grid-row: auto;                     /* kein Span mobil */
+    aspect-ratio: auto;
+  }
+  .bilder-galerie-full.bilder-galerie--portrait-left-stack .bild-container:nth-child(2),
+  .bilder-galerie-full.bilder-galerie--portrait-left-stack .bild-container:nth-child(3){
+    aspect-ratio: auto;
+  }
+}
