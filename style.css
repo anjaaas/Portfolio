@@ -1296,3 +1296,5 @@ body.landing-page main { margin-top: 0 !important; }
     aspect-ratio: auto;
   }
 }
+
+.about-lead span{ display:block; }
