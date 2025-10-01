@@ -1376,3 +1376,40 @@ body.landing-page main { margin-top: 0 !important; }
 /* Galerie übernimmt deine bestehenden Regeln (Grid, 3 Spalten).
    Falls du eine schmale 2er-Variante willst, nutze:
    .bilder-galerie-full.bilder-galerie--textbreite.bilder-galerie--2 { … } */
+
+   /* Sketch-Container sichtbar umranden */
+.sketchpad{
+  border: 1px dashed #999;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+/* Box-Sizing konsistent, Breiten sauber messen */
+.sketchpad, .sketch-canvas-wrap, #sketch{ box-sizing: border-box; }
+
+.sketch-canvas-wrap{
+  border: 1px solid #ddd;       /* die „fehlende“ Umrandung */
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* WICHTIG: keine feste CSS-Höhe für das Canvas, JS setzt sie dynamisch */
+#sketch{
+  width: 100%;
+  height: auto;                 /* alte feste Höhe (z. B. 420px) neutralisieren */
+  display: block;
+  background: #fffefb;
+  touch-action: none;           /* für Trackpad/Touch-Zeichnen */
+  cursor: crosshair;
+}
+
+/* Canvas-Größe wird per JS gesetzt – keine feste CSS-Höhe erzwingen */
+#sketch{
+  width: 100% !important;
+  height: auto !important;
+  display: block;
+  background: #fffefb;
+  touch-action: none;
+  cursor: crosshair;
+}
