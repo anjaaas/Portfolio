@@ -1298,3 +1298,81 @@ body.landing-page main { margin-top: 0 !important; }
 }
 
 .about-lead span{ display:block; }
+
+/* ============ Sketchpad (Skizzen-Seite) ============ */
+.sketchpad{
+  border: 1px dashed #999;
+  border-radius: 12px;
+  padding: 12px;
+  max-width: 1100px;
+}
+
+.sketch-toolbar{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+  font-family: 'Courier New', monospace;
+}
+
+.sketch-toolbar .btn{
+  border: 1px dotted #222;
+  background: transparent;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+}
+.sketch-toolbar .btn.primary{
+  border-style: solid;
+}
+.sketch-toolbar .btn[aria-pressed="true"]{
+  background: rgba(0,0,0,0.05);
+}
+
+.sketch-toolbar .field{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 4px;
+}
+.sketch-toolbar input[type="range"]{ accent-color: #222; }
+
+.sketch-toolbar .colors{
+  display: inline-flex;
+  gap: 8px;
+  margin-left: 8px;
+}
+.swatch{
+  width: 22px; height: 22px; border-radius: 999px;
+  border: 1px solid #222; background: #000; cursor: pointer;
+}
+.swatch[data-color="#555"]{ background:#555; }
+.swatch[data-color="#ff4f00"]{ background:#ff4f00; border-color:#ff4f00; }
+.swatch.is-active{ outline: 2px dashed #222; outline-offset: 2px; }
+
+.sketch-canvas-wrap{
+  background:
+    radial-gradient(#0001 1px, transparent 1px) 0 0/12px 12px; /* sehr subtiler "Papier"-Touch */
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+#sketch{
+  width: 100%;
+  height: 420px;           /* JS passt die echte Größe (HiDPI) an */
+  display: block;
+  background: #fffefb;
+  touch-action: none;      /* verhindert Scroll/Zoom beim Zeichnen */
+}
+
+.hint{
+  font-size: .9rem;
+  color: #555;
+  margin-top: 6px;
+}
+
+/* Galerie übernimmt deine bestehenden Regeln (Grid, 3 Spalten).
+   Falls du eine schmale 2er-Variante willst, nutze:
+   .bilder-galerie-full.bilder-galerie--textbreite.bilder-galerie--2 { … } */
