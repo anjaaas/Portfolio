@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skizzen – Anja Giossi</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="main.js?v=1" defer></script>
+  <script src="sketch.js?v=2" defer></script> <!-- neue, abgespeckte Version -->
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo"><a href="index.html">Anja Giossi</a></div>
+      <nav>
+        <a href="projekte.html">Projekte</a>
+        <a href="skizzen.html" class="active">Skizzen</a>
+        <a href="ueber-mich.html">Über mich</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="projekt-einzeln">
+      <h1>Skizzen</h1>
+      <p><strong>Skizzenhaft arbeiten – direkt im Browser</strong></p>
+
+      <!-- Sketchpad (Spielwiese, ohne "Galerie speichern") -->
+      <div class="sketchpad">
+        <div class="sketch-toolbar" role="toolbar" aria-label="Zeichenwerkzeuge">
+          <button type="button" class="btn" data-tool="pen" aria-pressed="true" title="Stift (P)">✏️ Stift</button>
+          <button type="button" class="btn" data-tool="eraser" aria-pressed="false" title="Radierer (E)">🩹 Radierer</button>
+
+          <label class="field">
+            Stärke
+            <input type="range" id="size" min="1" max="20" value="4" />
+          </label>
+
+          <div class="colors" role="group" aria-label="Farben">
+            <button type="button" class="swatch is-active" data-color="#000" title="Schwarz"></button>
+            <button type="button" class="swatch" data-color="#555" title="Grau"></button>
+            <button type="button" class="swatch" data-color="#ff4f00" title="Akzent"></button>
+          </div>
+
+          <span class="spacer"></span>
+
+          <button type="button" class="btn" data-action="undo" title="Rückgängig (Ctrl/Z)">↶</button>
+          <button type="button" class="btn" data-action="redo" title="Wiederholen (Ctrl/Shift/Z)">↷</button>
+          <button type="button" class="btn" data-action="clear" title="Leeren">🗑️</button>
+          <button type="button" class="btn primary" data-action="download" title="Als PNG speichern">⬇️ PNG</button>
+        </div>
+
+        <div class="sketch-canvas-wrap">
+          <canvas id="sketch" aria-label="Zeichenfläche"></canvas>
+        </div>
+        <p class="hint">Tipp: mit der Maus oder dem Finger zeichnen.</p>
+      </div>
+
+      <div class="detail-separator"></div>
+
+      <!-- DEINE kuratierte Galerie (statisch) -->
+      <h2 class="galerie-beschreibung">Ausgewählte Skizzen</h2>
+
+      <!-- Gruppe 1 -->
+      <div class="bilder-galerie-full">
+        <div class="bild-container">
+          <img src="Skizze1.jpg" alt="Skizze collagenartig mit verschiedenen Gesichtern und natürlichen Elementen" class="galerie-img" loading="lazy" decoding="async">
+        </div>
+        <div class="bild-container">
+          <img src="Skizze2.jpg" alt="Skizze collagenartig mit Personen und natürlichen Dekoelementen" class="galerie-img" loading="lazy" decoding="async">
+        </div>
+        <div class="bild-container">
+          <img src="Skizze3.jpg" alt="Skizze collageartig mit verschiedenen Gesichtern" class="galerie-img" loading="lazy" decoding="async">
+        </div>
+      </div>
+     
+
+
+      <!-- Gruppe 2 (Beispiel mit Portrait/Quer-Mix; optional) -->
+      <!--
+      <div class="bilder-galerie-full bilder-galerie--portrait-left-stack">
+        <div class="bild-container">
+          <img src="skizzen/portrait_01.jpg" alt="Skizze Portrait" class="galerie-img" loading="lazy" decoding="async">
+        </div>
+        <div class="bild-container">
+          <img src="skizzen/quer_01.jpg" alt="Skizze Querformat 1" class="galerie-img" loading="lazy" decoding="async">
+        </div>
+        <div class="bild-container">
+          <img src="skizzen/quer_02.jpg" alt="Skizze Querformat 2" class="galerie-img" loading="lazy" decoding="async">
+        </div>
+      </div>
+    -->
+
+     <!-- <div class="zurueck" style="text-align:center">
+        <a href="projekte.html">&larr; Zu den Projekten</a>
+      </div> -->
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Anja Giossi</p>
+  </footer>
+
+  <!-- Galerie-Lightbox (wie auf Projektseiten) -->
+  <div id="galerie-lightbox" class="lightbox">
+    <span class="close" id="close-galerie">&times;</span>
+    <img id="galerie-lightbox-img" src="" alt="">
+    <div class="nav">
+      <span class="prev">&#10094;</span>
+      <span class="next">&#10095;</span>
+    </div>
+  </div>
+
+  <script>
+  // Lightbox für die kuratierte Skizzengalerie
+  (function(){
+    const galerieImages = document.querySelectorAll('.galerie-img');
+    if(!galerieImages.length) return;
+    const galerieLightbox = document.getElementById('galerie-lightbox');
+    const galerieLightboxImg = document.getElementById('galerie-lightbox-img');
+    const prevBtn = galerieLightbox.querySelector('.prev');
+    const nextBtn = galerieLightbox.querySelector('.next');
+    const closeGalerie = document.getElementById('close-galerie');
+    let currentIndex = 0;
+
+    galerieImages.forEach((img, i) => {
+      img.addEventListener('click', () => {
+        galerieLightbox.style.display='flex';
+        galerieLightboxImg.src = img.src;
+        currentIndex = i;
+      });
+    });
+    closeGalerie.addEventListener('click', () => galerieLightbox.style.display='none');
+    prevBtn.addEventListener('click', () => { currentIndex = (currentIndex-1+galerieImages.length)%galerieImages.length; galerieLightboxImg.src = galerieImages[currentIndex].src; });
+    nextBtn.addEventListener('click', () => { currentIndex = (currentIndex+1)%galerieImages.length; galerieLightboxImg.src = galerieImages[currentIndex].src; });
+
+    document.addEventListener('keydown', (e) => {
+      if(galerieLightbox.style.display==='flex'){
+        if(e.key==='ArrowRight') nextBtn.click();
+        if(e.key==='ArrowLeft')  prevBtn.click();
+        if(e.key==='Escape')     galerieLightbox.style.display='none';
+      }
+    });
+  })();
+  </script>
+</body>
+</html>
